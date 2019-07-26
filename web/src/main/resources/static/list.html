@@ -1,0 +1,269 @@
+<html>
+<head>
+    <title>常用联系人</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-------------Amazeui--------------->
+    <link rel="stylesheet" type="text/css" href="css/amazeui.css">
+    <!------------核心样式-------------->
+    <link rel="stylesheet" type="text/css" href="css/user.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/form2json.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "person/findPersonAll",
+                type: "get",
+                dataType: "json",
+                statusCode: {
+                    200: function (personList) {
+                        $.each(personList, function (index, p) {
+                            $("#list").append("<li>\n" +
+                                "                        <div>\n" +
+                                "                            <div class=\"dt\">联系人：</div>\n" +
+                                "                            <div class=\"dd\">"+p.username+"</div>\n" +
+                                "                            <div class=\"clear\"></div>\n" +
+                                "                        </div>\n" +
+                                "                        <div>\n" +
+                                "                            <div class=\"dt\">详细地址：</div>\n" +
+                                "                            <div class=\"dd\">\n" +
+                                "                                <p>"+p.address+"</p>\n" +
+                                "                            </div>\n" +
+                                "                            <div class=\"clear\"></div>\n" +
+                                "                        </div>\n" +
+                                "                        <div>\n" +
+                                "                            <div class=\"dt\">邮政编码：</div>\n" +
+                                "                            <div class=\"dd\">"+p.postcode+"</div>\n" +
+                                "                            <div class=\"clear\"></div>\n" +
+                                "                        </div>\n" +
+                                "                        <div>\n" +
+                                "                            <div class=\"dt\">手机号码：</div>\n" +
+                                "                            <div class=\"dd\">"+p.phone+"</div>\n" +
+                                "                            <div class=\"clear\"></div>\n" +
+                                "                        </div>\n" +
+                                "                    </li>")
+                        })
+                    }
+
+                }
+            })
+        });
+
+        function findPerson() {
+            var params = $("#form").formToJson();
+
+            $.ajax({
+                url:"person/findByNameAndAddress",
+                type:"get",
+                data:params,
+                dataType:"json",
+                statusCode:{
+                    200: function (personList) {
+                        $("#list").html("");
+                        $.each(personList, function (index, p) {
+                            $("#list").append("<li>\n" +
+                                "                        <div>\n" +
+                                "                            <div class=\"dt\">联系人：</div>\n" +
+                                "                            <div class=\"dd\">"+p.username+"</div>\n" +
+                                "                            <div class=\"clear\"></div>\n" +
+                                "                        </div>\n" +
+                                "                        <div>\n" +
+                                "                            <div class=\"dt\">详细地址：</div>\n" +
+                                "                            <div class=\"dd\">\n" +
+                                "                                <p>"+p.address+"</p>\n" +
+                                "                            </div>\n" +
+                                "                            <div class=\"clear\"></div>\n" +
+                                "                        </div>\n" +
+                                "                        <div>\n" +
+                                "                            <div class=\"dt\">邮政编码：</div>\n" +
+                                "                            <div class=\"dd\">"+p.postcode+"</div>\n" +
+                                "                            <div class=\"clear\"></div>\n" +
+                                "                        </div>\n" +
+                                "                        <div>\n" +
+                                "                            <div class=\"dt\">手机号码：</div>\n" +
+                                "                            <div class=\"dd\">"+p.phone+"</div>\n" +
+                                "                            <div class=\"clear\"></div>\n" +
+                                "                        </div>\n" +
+                                "                    </li>")
+                        })
+                    }
+                }
+
+            })
+        }
+    </script>
+</head>
+<body>
+
+<!-------------------版头------------------->
+<div id="header">
+    <div class="cw1000">
+        <!-------------------logo------------------->
+        <div class="logo"><a title="" href="index.html"><img alt="" src="images/logo.jpg"/></a></div>
+        <!-------------------导航------------------->
+        <div class="nav">
+            <ul>
+                <li><a title="" href="#">首页</a><span>|</span></li>
+                <li><a title="" href="#">师资特色</a><span>|</span></li>
+                <li><a title="" href="#">学院风采</a><span>|</span></li>
+                <li><a title="" href="#">新闻资讯</a></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <!-------------------用户------------------->
+        <div class="user">
+            <a class="user-hd" href="#">
+                <img src="images/user_head_pic.jpg"/><b></b>
+                <div class="clear"></div>
+            </a>
+            <div class="user-bd">
+                <div class="integral"><img src="images/integral_ico.png"/>当前积分 609</div>
+                <ul class="nav_sort">
+                    <li><a href="#"><i class="i1"></i>我的主页</a></li>
+                    <li><a href="#"><i class="i2"></i>写游记</a></li>
+                    <li><a href="#"><i class="i9"></i>我的游记</a></li>
+                    <li><a href="#"><i class="i3"></i>我的收藏</a></li>
+                    <li><a href="#"><i class="i6"></i>我的评论</a></li>
+                    <li><a href="#"><i class="i7"></i>设置</a></li>
+                    <li><a href="#"><i class="i8"></i>退出</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!-----------------用户banner---------------->
+<div id="user_banner">
+    <div class="pic">
+        <a href="my_head.html">
+            <img src="images/user_head_pic.jpg"/>
+            <div>更换头像</div>
+        </a>
+    </div>
+    <div class="con">
+        <h2>Hello World</h2>
+        <p>人生旅程，不同的是沿途风景以及看风景的心情</p>
+    </div>
+</div>
+<!-----------------快捷导航---------------->
+<div id="quick_nav">
+    <a href="#"><span class="ico1"><img src="images/nav_ico1.png"/></span>个人主页</a>
+    <a href="#"><span class="ico2"><img src="images/nav_ico2.png"/></span>发布游记</a>
+    <a href="#"><span class="ico7"><img src="images/nav_ico7.png"/></span>我的游记</a>
+    <a href="#"><span class="ico3"><img src="images/nav_ico3.png"/></span>我的收藏</a>
+    <a href="#"><span class="ico4"><img src="images/nav_ico4.png"/></span>商品订单</a>
+    <a href="#"><span class="ico5"><img src="images/nav_ico5.png"/></span>旅游订单</a>
+    <a href="#"><span class="ico6"><img src="images/nav_ico6.png"/></span>我的评论</a>
+</div>
+<!-----------------框架---------------->
+<div class="cw1000">
+    <div class="w280 fl">
+        <div class="public_box">
+            <!-----------------设置左侧导航---------------->
+            <div id="set_nav">
+                <ul>
+                    <li><a href="add.html"><i class="ico1"></i>添加联系人</a></li>
+                    <li><a class="cur" href="list.html"><i class="ico3"></i>常用联系人</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="w700 fr">
+        <div class="public_box">
+            <!-----------------联系列表---------------->
+            <div id="set_box">
+
+                <form  id="form">
+                    <table class="table_list">
+                        <tr>
+                            <th>姓名：</th>
+                            <td><input class="text" type="text"  name="username"/></td>
+                        </tr>
+
+                        <tr>
+                            <th>地址：</th>
+                            <td><input class="text" type="text" name="address"/></td>
+                        </tr>
+
+                    </table>
+
+                    <div class="operation">
+                        <input type="button" class="save"  onclick="findPerson()" value="查询"/>
+                    </div>
+                </form>
+
+                <div class="title"><h2>联系人列表</h2></div>
+                <ul class="address" id="list">
+                    <li class="title">联系人列表</li>
+
+                    <!--
+                        作者：offline
+                        时间：2019-02-15
+                        描述：联系人展示
+                    -->
+
+
+                    <!--<li>-->
+                        <!--<div>-->
+                            <!--<div class="dt">联系人：</div>-->
+                            <!--<div class="dd">张三</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<div class="dt">详细地址：</div>-->
+                            <!--<div class="dd">-->
+                                <!--<p>澳门特别行政区路氹城三顿饭都是富商大贾第三方</p>-->
+                            <!--</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<div class="dt">邮政编码：</div>-->
+                            <!--<div class="dd">471000</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<div class="dt">手机号码：</div>-->
+                            <!--<div class="dd">13721656520</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+
+
+                    <!--<li>-->
+                        <!--<div>-->
+                            <!--<div class="dt">联系人：</div>-->
+                            <!--<div class="dd">赵六</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<div class="dt">详细地址：</div>-->
+                            <!--<div class="dd">-->
+                                <!--<p>澳门特别行政区路氹城似懂非懂双方的首发但是</p>-->
+                            <!--</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<div class="dt">邮政编码：</div>-->
+                            <!--<div class="dd">471000</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<div class="dt">手机号码：</div>-->
+                            <!--<div class="dd">15670382580</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<!-----------------版底---------------->
+<div id="footer">
+    <p>版权所有 2006 - 2019 江苏传智播客教育科技股份有限公司</p>
+    <p>学校地址：江苏省宿迁市沭阳县常州路57号 邮编：223600苏ICP备16007882号-4</p>
+</div>
+</body>
+</html>
